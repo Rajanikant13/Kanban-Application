@@ -1,0 +1,53 @@
+
+   a{
+    text-decoration: none;
+    color: black;
+   }
+
+ 
+   body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: rgba(128, 128, 128, 0.263);
+    
+  }
+ 
+  
+  .column {
+      margin-top: 40px;
+    text-align: center;
+    margin-left: 35%;
+    width: 20%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+  }
+  
+
+  
+   
+   
+    .example-card {
+      
+      /* background-color: #b0a5d1; */
+      border: solid none(74, 174, 199);
+      width: 400px;
+      margin: 30px;
+      /* margin-left: 15px; */
+      float: left;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: -15px 15px rgba(74, 86, 151, 0.511);
+    border: 1px rgba(0, 0, 0, 0.325) solid;
+    }
+
+    .example-card:hover{
+      transform: translateY(-20px);
+      
+    }

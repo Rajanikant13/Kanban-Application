@@ -1,0 +1,75 @@
+.spacer{
+    flex: auto ;
+  }
+  .sidenav-container {
+    height: 100%;
+
+  }
+  
+  .mat-toolbar {
+    background: rgb(255, 255, 255);
+    border: 1px rgba(85, 85, 85, 0.656) solid;
+
+
+  }
+  button{
+    font-weight: bolder;
+
+    margin: 5px;
+
+  }
+  .mat-sidenav{
+    /* background:rgba(92, 92, 92, 0.511); */
+    /* border-radius: 15px; */
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+   width: 17%;
+  }
+
+  .mat-list-item{
+    /* color: whitesmoke; */
+  }
+  .mat-list-item:hover{
+    background:rgba(74, 86, 151, 0.511);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  
+ mat-sidenav-content{
+  /* background-color: rgb(214, 214, 214); */
+
+ }
+
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .fixed-header{
+    position:sticky;
+    position:-webkit-sticky ;/* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  
+  }
+  
+  .mat-toolbar a{
+    text-decoration: none;
+    color: black;
+  }
+  .logo{
+    font-family: 'Pacifico', cursive;
+  }
+
+  /* ---------------------------------------------- */
+  ::-webkit-scrollbar{
+    /* width: 8px; */
+    /* margin-right: 20px; */
+    border-radius: 2px;
+
+}
+
+

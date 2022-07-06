@@ -1,0 +1,32 @@
+.btn-color{
+  background-color: green;
+  color: #fff;
+  margin-left: 100px;
+  padding: 7px 20px;
+  justify-content: center;
+  width: 60%;
+  
+}
+.col-md-12{
+  margin: 7px;
+  border-radius: 7px;
+}
+
+.container{
+ justify-content: center;
+
+
+ 
+}
+.col-md-5{
+  margin-top: 30px;
+  margin-left: 27%;
+  padding: 20px;
+  color: rgba(134, 134, 134, 0.923);
+  /* background: radial-gradient(circle, rgba(113,107,107,1) 0%, rgba(22,20,20,1) 100%); */
+  background: rgb(255, 251, 251);
+  box-shadow: -15px 15px rgba(74, 86, 151, 0.511);
+  border-radius: 25px;
+  border: 1px rgba(83, 83, 83, 0.396) solid;
+}
+

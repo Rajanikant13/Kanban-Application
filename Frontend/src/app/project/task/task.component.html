@@ -1,0 +1,170 @@
+
+<!-- <a routerLink="/addtask">Add New Task </a> -->
+
+<div class="container">
+  <br>
+  <button class="btn btn-primary" routerLink="/project">Go back</button>
+  <div class="grid-container">
+    <div >
+      <!-- -------------------------------------------------------------------------------------- -->
+        <h1  style="margin: 2%; color: rgb(29, 30, 31); text-align:center; font-size:50px; font-weight: bold; font-family: 'Gochi Hand', cursive;">
+        {{projectName}}
+        </h1>
+      <div class="grid-item">
+        <h1 style="text-align:center;">BACKLOG</h1>
+  
+        <div cdkDropList #backloglist="cdkDropList" id="BACKLOG" [cdkDropListData]="backlog"
+          [cdkDropListConnectedTo]="[todoList,requestedlist,doneList]" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <!-- ------------------counter--------- -->
+         <div class="col-md-10">{{backlogCount}} Backlog Task(s) </div>
+         <!-- ----------------counter ends -->
+  
+          <div class="example-box" *ngFor="let task of backlog" cdkDrag id="{{task.taskId}}">
+            
+            <div class="card">
+              <!-- <p >{{task.taskId}}</p> -->
+              <h2>{{task.taskTitle}}<hr></h2>
+               
+          
+              <p style="background-color: rgb(255, 29, 29); padding: 5px;margin: 3px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='HIGH'"> Priority : {{task.taskPriority}}<mat-icon style="float:right;">report_problem</mat-icon></p>
+              <p style="background-color: rgb(255, 255, 80); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='MODERATE'">Priority : {{task.taskPriority}} <mat-icon style="float:right;">label</mat-icon></p>
+              <p style="background-color: rgb(97, 245, 97); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='LOW'"> Priority : {{task.taskPriority}} <mat-icon style="float:right;">low_priority</mat-icon></p>
+                <ul style="line-height :180%">
+                  <li>{{task.taskDetails}}</li>
+                  <!-- <li> Assigned By : {{task.taskAssignBy}}</li>
+                  <li>Start Date : {{task.startDate | date:'EEEE, MMMM d, yyyy'}}</li>
+                  <li>End Date : {{task.endDate |date:'EEEE, MMMM d, yyyy'}}</li> -->
+                </ul>
+              <div>
+                <hr>
+                <span class="col-md-3 btn btn-info" (click)="openDialogEdit(task)"><mat-icon>open_in_new</mat-icon></span>                <span class="col-md-4"></span>
+                <span class="col-md-3 btn btn-danger" (click)="deleteTask(task)"><mat-icon>delete</mat-icon></span>
+              </div>
+            </div>
+          </div>
+          <a class="col-md-10" routerLink="/addtask">⬆ Add Another Card</a>
+        </div>
+       </div>
+      <!-- -------------------------------------------------------------------------------------------------- -->
+      <div class="grid-item">
+        <h1 style="text-align:center;">REQUESTED</h1>
+  
+        <div cdkDropList #requestedlist="cdkDropList" id="REQUESTED" [cdkDropListData]="requested"
+          [cdkDropListConnectedTo]="[todoList,doneList,backloglist]" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+           <!-- ------------------counter--------- -->
+         <div class="col-md-10"> {{reqestedCount}}  Requested Task(s)</div>
+         <!-- ----------------counter ends -->
+          <!-- This is requested task card -->
+          <div class="example-box" *ngFor="let task of requested" cdkDrag id="{{task.taskId}}">
+            <div class="card">
+              <!-- <p>{{task.taskId}}</p> -->
+              <h2>{{task.taskTitle}}<hr></h2>
+                  
+          
+              <p style="background-color: rgb(255, 29, 29); padding: 5px;margin: 3px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='HIGH'"> Priority : {{task.taskPriority}}<mat-icon style="float:right;">report_problem</mat-icon></p>
+              <p style="background-color: rgb(255, 255, 80); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='MODERATE'">Priority : {{task.taskPriority}} <mat-icon style="float:right;">label</mat-icon></p>
+              <p style="background-color: rgb(97, 245, 97); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='LOW'"> Priority : {{task.taskPriority}} <mat-icon style="float:right;">low_priority</mat-icon></p>
+                <ul style="line-height :180%">
+                  <li>{{task.taskDetails}}</li>
+                  <!-- <li> Assigned By : {{task.taskAssignBy}}</li>
+                  <li>Start Date : {{task.startDate | date:'EEEE, MMMM d, yyyy'}}</li>
+                  <li>End Date : {{task.endDate |date:'EEEE, MMMM d, yyyy'}}</li> -->
+                </ul>
+              <div>
+                <hr>
+                <span class="col-md-3 btn btn-info" (click)="openDialogEdit(task)"><mat-icon>open_in_new</mat-icon></span>                <span class="col-md-4"></span>
+                <span class="col-md-3 btn btn-danger" (click)="deleteTask(task)"><mat-icon>delete</mat-icon></span>
+              </div>
+            </div>
+          </div>
+          <a class="col-md-10" routerLink="/addtask">⬆ Add Another Card</a>
+        </div>
+      </div>
+      <!-- ---------------------------------------------------------------------------------- -->
+      <div class="grid-item">
+        <h1 style="text-align:center;">IN PROCESS</h1>
+        <div cdkDropList #todoList="cdkDropList" id="IN_PROCESS" [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList,requestedlist,backloglist]" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+           <!-- ------------------counter--------- -->
+         <div class="col-md-10">{{inProcessCount}}  In process Task(s)</div>
+         <!-- ----------------counter ends -->
+  
+          <div class="example-box" *ngFor="let task of todo" cdkDrag id="{{task.taskId}}">
+            <div class="card">
+              <!-- <p>{{task.taskId}}</p> -->
+              <h2>{{task.taskTitle}}<hr></h2>
+                  
+              <p style="background-color: rgb(255, 29, 29); padding: 5px;margin: 3px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='HIGH'"> Priority : {{task.taskPriority}}<mat-icon style="float:right;">report_problem</mat-icon></p>
+              <p style="background-color: rgb(255, 255, 80); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='MODERATE'">Priority : {{task.taskPriority}} <mat-icon style="float:right;">label</mat-icon></p>
+              <p style="background-color: rgb(97, 245, 97); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='LOW'"> Priority : {{task.taskPriority}} <mat-icon style="float:right;">low_priority</mat-icon></p>
+                <ul style="line-height :180%">
+                  <li>{{task.taskDetails}}</li>
+                  <!-- <li> Assigned By : {{task.taskAssignBy}}</li>
+                  <li>Start Date : {{task.startDate | date:'EEEE, MMMM d, yyyy'}}</li>
+                  <li>End Date : {{task.endDate |date:'EEEE, MMMM d, yyyy'}}</li> -->
+                </ul>
+              <div>
+                <hr>
+                <span class="col-md-3 btn btn-info" (click)="openDialogEdit(task)"><mat-icon>open_in_new</mat-icon></span>                <span class="col-md-4"></span>
+                <span class="col-md-3 btn btn-danger" (click)="deleteTask(task)"><mat-icon>delete</mat-icon></span>
+              </div>
+            </div>
+          </div>
+          <a class="col-md-10" routerLink="/addtask">⬆ Add Another Card</a>
+        </div>
+      </div>
+  
+  
+      <div class="grid-item">
+        <h1 style="text-align:center;">COMPLETED</h1>
+  
+        <div cdkDropList #doneList="cdkDropList" id="COMPLETED" [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList,requestedlist,backloglist]" class="example-list"
+          (cdkDropListDropped)="drop($event)">
+           <!-- ------------------counter--------- -->
+         <div class="col-md-10">{{completedCount}}  Completed Task(s)</div>
+         <!-- ----------------counter ends -->
+  
+          <div class="example-box" *ngFor="let task of done" cdkDrag id="{{task.taskId}}">
+            <div class="card">
+              <!-- <p>{{task.taskId}}</p> -->
+              <h2>{{task.taskTitle}}<hr></h2>
+                        
+              <p style="background-color: rgb(255, 29, 29); padding: 5px;margin: 3px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='HIGH'"> Priority : {{task.taskPriority}}<mat-icon style="float:right;">report_problem</mat-icon></p>
+              <p style="background-color: rgb(255, 255, 80); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='MODERATE'">Priority : {{task.taskPriority}} <mat-icon style="float:right;">label</mat-icon></p>
+              <p style="background-color: rgb(97, 245, 97); padding: 5px; border-radius: 5px; text-align: center;"
+                *ngIf="task.taskPriority=='LOW'"> Priority : {{task.taskPriority}} <mat-icon style="float:right;">low_priority</mat-icon></p> 
+                        
+                <ul style="line-height :180%">
+                  <li>{{task.taskDetails}}</li>
+                  <!-- <li> Assigned By : {{task.taskAssignBy}}</li>
+                  <li>Start Date : {{task.startDate | date:'EEEE, MMMM d, yyyy'}}</li>
+                  <li>End Date : {{task.endDate |date:'EEEE, MMMM d, yyyy'}}</li> -->
+                </ul>
+              <div>
+                <hr>
+                <span class="col-md-3 btn btn-info" (click)="openDialogEdit(task)"><mat-icon>open_in_new</mat-icon></span>                <span class="col-md-4"></span>
+                <span class="col-md-3 btn btn-danger" (click)="deleteTask(task)"><mat-icon>delete</mat-icon></span>
+              </div>
+            </div>
+          </div>
+          <a class="col-md-10" (click)="openDialogAdd()">⬆ Add Another Card</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

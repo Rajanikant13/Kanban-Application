@@ -1,0 +1,64 @@
+<mat-toolbar class="fixed-header">
+  <button class="btn" (click)="open=!open">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="spacer"></div>
+  <span class="logo">  <img src="assets\kanlog.png" alt="kanban" width="200px" height="60px"></span>
+  <!-- NAV TOOLBAR -->
+  <div class="spacer"></div>
+  <div [hidden]="loggedIn">
+    <a routerLink="/login"><button class="btn btn-primary glyphicon glyphicon-log-in"style="border-radius:50px;" >&nbsp;Login</button></a>
+    <a routerLink="/register"><button class="btn btn-primary glyphicon glyphicon-user"style="border-radius:50px;">&nbsp;Register</button></a>
+   </div>
+<!-- <i class='fas fa-user-check'></i> -->
+   <div [hidden]="!loggedIn" >
+   
+    <!-- <a><p><b>Hi, {{userName}}</b></p></a> -->
+   
+    Hi, {{userName}}
+    <button class="btn btn-primary glyphicon glyphicon-user" [matMenuTriggerFor]="beforeMenu" (click)="openProfile()" style="border-radius:50px;"></button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <p style="padding: 10px 10px;"><b>Hi, {{userName}}</b><br><br>
+      Email : {{emailId}}</p>
+<hr>
+       <a routerLink="/home"><button class="btn btn-primary glyphicon glyphicon-log-out" (click)="logout()">&nbsp;LogOut </button></a>
+    </mat-menu>
+   </div> 
+   <!-- <div [hidden]="!loggedIn">
+    <a routerLink="/home"><button class="btn btn-primary" (click)="logout()">LogOut</button></a>
+    <a><button class="btn btn-primary" (click)='openProfile()'><mat-icon>account_circle</mat-icon></button></a>
+   </div> -->
+ <!-- <div>
+  <a routerLink="/login"><button class="btn btn-primary">Login</button></a>
+  <a routerLink="/register"><button class="btn btn-primary">Register</button></a>
+ </div> -->
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container" style="height: 100%;">
+
+  <mat-sidenav mode="over" [opened]='open'>
+    <mat-nav-list >
+      <!-- LIST ITEMS -->
+      <div  [hidden]="loggedIn">
+        <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon>Home</a>
+        <a mat-list-item routerLink="/register"><mat-icon>assignment_turned_in</mat-icon>Register</a>
+        <a mat-list-item routerLink="/login"><mat-icon>login</mat-icon>Login</a>
+        <a mat-list-item routerLink="/aboutus"><mat-icon>supervised_user_circle</mat-icon>About Us</a>
+       </div>
+       <div  [hidden]="!loggedIn">
+        <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon>Home</a>
+        <a mat-list-item   routerLink="/project"><mat-icon>file_copy</mat-icon>Projects</a>
+        <a mat-list-item   routerLink="/newproject"><mat-icon> add_comment</mat-icon>Add Projects</a>
+        <a mat-list-item routerLink="/aboutus"><mat-icon>supervised_user_circle</mat-icon>About Us</a>
+       </div>
+     
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- COntent Here -->
+    <router-outlet></router-outlet>
+  
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+<app-footer></app-footer>

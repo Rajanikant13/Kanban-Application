@@ -1,0 +1,60 @@
+<div class="container">
+    <div class=" col-md-5 ">
+            <form class="form-group" [formGroup]="newTaskFrom" (ngSubmit)="onsubmit()">
+                <div routerLink="/task" style="float:left; margin-top: 5px;"><mat-icon>arrow_back</mat-icon></div>
+                <h2 class="text-center" style="color:rgba(183, 183, 183, 0.912); font-weight: bold;">
+                    <a routerLink="/task" ></a>Add New Task</h2>
+                <hr>
+                <br>
+
+                <div class="row">
+                <!-- <div class="col-md-4">
+                    <label for="taskId">Task ID </label>
+                    <input class="form-control" type="number" formControlName="taskId" placeholder="Task ID">
+                </div> -->
+                <div class="col-md-11">
+                    <label for="taskTitle">Task Title*</label>
+                    <input class="form-control" type="text" formControlName="taskTitle" placeholder="Task Title">
+                </div>
+                </div>
+                <div class="col-md-11.9">
+                    <label for="taskDetails">Task Details* </label>
+        <input class="form-control" type="text" formControlName="taskDetails" placeholder="Task Details">
+                </div>
+                <div class="col-md-11.9">
+                    <label for="taskAssignBy">Task AssignBy </label>
+        <input class="form-control" type="text" formControlName="taskAssignBy" placeholder="Task AssignBy">
+                </div>
+                <div class="row">
+                <div class="col-md-6">
+                    <label for="taskPriority">Priority*</label>
+                    <select  class="form-control" formControlName="taskPriority">
+                        <option  value="HIGH">HIGH</option>
+                        <option  value="MODERATE" selected>MODERATE</option>
+                        <option  value="LOW">LOW</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="taskStatus">Task Stage*</label>
+                    <select  class="form-control" formControlName="taskStatus" >
+                        <option  value="REQUESTED" selected>REQUESTED</option>
+                        <option  value="BACKLOG">BACKLOG</option>
+                        <option  value="IN_PROCESS">IN_PROCESS</option>
+                        <option  value="COMPLETED">COMPLETED</option>
+                    </select>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="startDate">Start Date</label>
+                        <input class="form-control" formControlName="startDate" type="date" >
+                    </div>
+                    <div class="col-md-6">
+                        <label  for="endDate">End Date</label> 
+                        <input class="form-control" formControlName="endDate" type="date" >
+                    </div>
+                   </div><br>
+             <button type="submit" class="btn btn-success" [disabled]="newTaskFrom.invalid">Add Task</button>
+            </form>
+     </div>
+</div>

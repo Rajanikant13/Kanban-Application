@@ -1,0 +1,12 @@
+a{
+ text-decoration: none;
+ margin:auto; 
+ padding: 5px 20px;
+  border: 1px rgba(128, 128, 128, 0.434) solid;
+   border-radius: 30px; 
+   font-size: 30px;color: rgba(71, 71, 71, 0.818);
+}
+a:hover{
+background-color: rgba(255, 37, 37, 0.716);
+color: white;
+}
